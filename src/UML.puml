@@ -26,14 +26,14 @@ Event <|-- BoardMeeting
 Person <|-- Member
 Member <|-- BoardMember
 
-AAUOC o-- Person
-AAUOC o-- Event
-AAUOC o-- Location
+AAUOC o-- "0...*" Person
+AAUOC o-- "0...*" Event
+AAUOC o-- "0...*" Location
 
-Event -- Location : isLocated In
-Event -- Member : attendsTo
-Conference -- Person : attendsTo
-BoardMeeting -- BoardMember : attendsTo
+Event "0...*" -- "1" Location : isLocated In
+Event "0...*" -- "0...*" Member : attendsTo
+Conference "0...*" -- "0...*" Person : attendsTo
+BoardMeeting "0...*" -- "0...*" BoardMember : attendsTo
 
 AAUOC : newLocation(l: Location): void
 AAUOC : newEvent(e: Event): void
